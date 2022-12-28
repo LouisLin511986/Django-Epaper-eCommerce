@@ -1,0 +1,100 @@
+<html>
+ <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>My Note賣Note</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<header class="header">
+    <div class="header-1" style="position:fixed;top:0; left:0; right:0;z-index: 1000;">
+        <a href="/index/" class="logo" > <i class="fas fa-book"></i> My Note賣Note </a> 
+        <div class="icons">
+            {% if request.user.is_authenticated %}
+                <h4>Hi~{{name}}您好!</h4>
+                <!-- style="font-size:18px; position:absolute; top:28%; left:73%; font-family:微軟正黑體; color: red; user-select:none;" -->
+            {% else %}
+            {% endif %}
+            <a for="search-box" class="fas fa-search" href='/search/' title="搜尋"></a>
+            <a onclick="window.open(' /news/newsindex/', 'newsindex', config='height=550,width=800');" class="fa-solid fa-circle-info" title="公告"></a>
+            {% if request.user.is_authenticated %}
+                <a class="fa-solid fa-user" href='/userdetail/' title="帳戶訊息"></a>
+                <a href="/logout/" class="fa-solid fa-arrow-right-from-bracket" title="登出"></a>
+            {% else %}
+                <a href="/login/" class="fa-solid fa-fingerprint" title="登入"></a>
+            {% endif %}
+
+            {% if request.user.is_staff %}
+                <a href="/admin/" target="_blank" class="fas fa-pen-square" title="後台管理"></a>
+            {% else %}
+            {% endif %}
+        </div>
+    </div>
+    <div class="header-2" style="position:fixed;top:75px; left:0; right:0;z-index: 1000;">
+        <nav class="navbar">
+            <a href="/index/">首頁</a>
+            <a href="/All/">全部</a>
+            <a href="/Featured/">精選</a>
+            <a href="/Hot/">熱門</a>
+            <a href="/New/">最新</a>
+            {% if request.user.is_authenticated %}
+                <a href="/addnew/">賣筆記</a>
+                <a href="/downloadpage/">買家管理</a>
+                <a href="/authAccess/">賣家管理</a>
+            {% else %}
+            {% endif %}
+        </nav>
+    </div>
+</header>
+{% block content %}{% endblock %}
+<nav class="bottom-navbar">
+    <a href="#home" class="fas fa-home"></a>
+    <a href="#featured" class="fas fa-list"></a>
+    <a href="#arrivals" class="fas fa-tags"></a>
+    <a href="#reviews" class="fas fa-comments"></a>
+    <a href="#blogs" class="fas fa-blog"></a>
+</nav>
+
+<section class="footer">
+    <div class="box-container">
+        <div class="box">
+            <h3>企業位置</h3>
+            <a> <i class="fas fa-map-marker-alt"></i>高雄市</a>
+        </div>
+        <div class="box">
+            <h3>快速連結</h3>
+            <a href="/index/"> <i class="fas fa-arrow-right"></i>首頁</a>
+            <a href="/All/"> <i class="fas fa-arrow-right"></i> 全部 </a>
+            <a href="/Featured/"> <i class="fas fa-arrow-right"></i> 精選 </a>
+            <a href="/Hot/"> <i class="fas fa-arrow-right"></i> 熱門 </a>
+            <a href="/New/"> <i class="fas fa-arrow-right"></i> 最新 </a>
+            {% if request.user.is_authenticated %}
+                <a href="/addnew/"> <i class="fas fa-arrow-right"></i>賣筆記</a>
+            {% else %}
+            {% endif %}
+        </div>
+        <div class="box">
+            <h3>其他</h3>
+            <a href="/userdetail/"> <i class="fas fa-arrow-right"></i>帳戶訊息</a>
+            <a href="https://www.linebank.com.tw/products" target="_blank"> <i class="fas fa-arrow-right"></i>付款方式-Line Bank</a>
+            {% if request.user.is_authenticated %}
+            <a href="/downloadpage/"> <i class="fas fa-arrow-right"></i>買家管理</a>
+            <a href="/authAccess/"> <i class="fas fa-arrow-right"></i>賣家管理</a>
+            {% else %}
+            {% endif %}
+        </div>
+        <div class="box">
+            <h3>聯絡方式</h3>
+            <a> <i class="fas fa-phone"></i>0912-345-678</a>
+            <a> <i class="fas fa-phone"></i>0978-987-187</a>
+            <a style="text-transform: lowercase;"> <i class="fas fa-envelope"></i>90818126@gcloud.csu.edu.tw </a>
+            <img src="/static/images/worldmap.png" class="map" alt="">
+        </div>
+    </div>
+    <div class="credit"><span>©2021 My Note賣Note!</span></div>
+</section>
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script src="{% static 'js/index_script.js' %}"></script>
+</body>
+</html>

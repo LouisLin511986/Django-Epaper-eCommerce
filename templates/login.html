@@ -1,0 +1,18 @@
+<html>
+{% load static %}
+    <head>
+        <meta charset="utf-8">
+        <title>login page</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/login_style.css' %}">
+    </head>
+    <form action="." method="POST" name="form1" class="login">
+        {% csrf_token %}
+        <h1>Login 登入</h1>
+        <input name="username" type="text" placeholder="Username 使用者" id="username">
+        <input name="password" type="password" placeholder="Password 密碼" id="password">
+            <input type="submit" name="button" id="button" value="登入" />
+            <input type="button" onclick="location.href='/create/';" value="註冊" />
+            <input type="button" onclick="location.href='/index/';" value="首頁" />
+        <span style="color:red">{{message}}</span>
+    </form>
+</html>

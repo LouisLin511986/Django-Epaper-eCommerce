@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>最新消息</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	{% load static %}
+	<link href="{% static "css/news_style.css" %}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div id="warp">
+		<div id="header">
+			{% block login %}{% endblock %}
+			<div class="logo">
+				<a style="font-size: 2.5rem;font-weight: bolder;color:var(--black);"> <i class="fas fa-book" style="color:green;"></i>My Note賣Note </a>
+			</div>
+		</div>
+		<div class="headings">
+		  <h2>公告系統</h2>
+		</div>  
+		{% block content %}{% endblock %}
+		<div id="footer">2022 公告系統</div>
+	</div>
+</body>
+</html>

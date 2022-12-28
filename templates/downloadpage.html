@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/book_style.css' %}">
+    </head>
+    {% if request.user.is_authenticated %}
+    <section class="featured" id="featured" style="user-select:none;">
+        <br><br><br><br><br><br>
+        <span style="font-size: 3rem; padding:.5rem 2rem; color:var(--black); border:var(--border); font-weight:bold; ">買家管理</span>
+        <br><br><br>        <div class="swiper featured-slider">
+            <table width="90%" align="center">
+                <form action="." method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <tr>
+                        <td style="font-weight:bold; font-size: 20px;">訂單編號</td>
+                        <td style="font-weight:bold; font-size: 20px;">購買項目</td>
+                        <td style="font-weight:bold; font-size: 20px;">筆記作者</td>
+                        <td style="font-weight:bold; font-size: 20px;">購買時間</td>
+                        <td style="font-weight:bold; font-size: 20px;">購買價格</td>
+                        <td style="font-weight:bold; font-size: 20px;">檔案授權狀態</td>
+                    </tr>
+                    {% for access_num in access %}
+                        <tr>
+                            <td>{{access_num.id}}</td>
+                            <td>{{access_num.pname}}</td>
+                            <td>{{access_num.pcreatepeople}}</td>
+                            <td>{{access_num.mod_date}}</td>
+                            <td>{{access_num.pprice}}</td>
+                            {% if access_num.status %}
+                                <td><input type="button" value="檔案下載" class="btn" onclick="window.location='/media/{{access_num.File}}'"> </td>
+                            {% else %}
+                                <td><input type="button" value="尚未授權" class="btn" style="color: red; font-weight:bold;"></td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>預計消費共計 : {{buytotal}}</td>
+                        <td>實際消費共計 : {{realtotal}}</td>
+                    </tr>
+                </form>
+         </table>
+    </section>
+    {% else %}
+    	<script type="text/javascript">
+    	  	alert("無此權限，請先登入!!");
+             document.location.href="/login/";
+    	</script>
+    {% endif %}
+{% endblock %}

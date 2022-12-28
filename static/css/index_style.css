@@ -1,0 +1,838 @@
+
+:root{
+    --green:#27ae60;
+    --dark-color:#219150;
+    --black:#444;
+    --light-color:#666;
+    --border:.1rem solid rgba(0,0,0,.1);
+    --border-hover:.1rem solid var(--black);
+    --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+}
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    outline: none; border:none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition:all .2s linear;
+    /* transition: width none; */
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 5rem;
+    scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar{
+    width:1rem;
+}
+
+html::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+    background:var(--black);
+}
+
+section{
+    padding:5rem 9%;
+}
+
+.heading{
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.heading::before{
+    content: '';
+    position: absolute;
+    top:50%; left:0;
+    transform: translateY(-50%);
+    width: 100%;
+    height:.01rem;
+    background: rgba(0,0,0,.1);
+    z-index: -1;
+}
+
+.heading span{
+    font-size: 3rem;
+    padding:.5rem 2rem;
+    color:var(--black);
+    background: #fff;
+    border:var(--border);
+}
+
+.btn{
+    margin-top: 1rem;
+    display:inline-block;
+    padding:.9rem 3rem;
+    border-radius: .5rem;
+    color:#fff;
+    background:var(--green);
+    font-size: 1.7rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn:hover{
+    background:var(--dark-color);
+}
+
+.header .header-1{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index: 1000;
+    background:#fff;
+    padding:1.5rem 9%; /* padding屬性用於在任何已定義的邊框內圍繞元素內容生成空間。: https://www.w3schools.com/css/css_padding.asp ; rem : https://www.sitepoint.com/understanding-and-using-rem-units-in-css/*/
+    display: flex; /* display屬性元素的顯示行為（外觀框指定的類型），flex~~將元素顯示為塊級彈性容器
+。: https://www.w3schools.com/cssref/pr_class_display.asp */
+    align-items: center; /*align-items屬性指定靈活容器內項目的默認對齊方式。 : https://www.w3schools.com/cssref/css3_pr_align-items.asp*/
+    justify-content: space-between;/*justify-content當項目未使用主軸（水平）上的所有可用空間時，該屬性對齊靈活容器的項目。 :https://www.w3schools.com/cssref/css3_pr_justify-content.asp*/
+}
+
+.header .header-1 .logo{
+    font-size: 2.5rem;
+    font-weight: bolder; /*font-weight屬性設置文本中字符的粗細程度。 : https://www.w3schools.com/cssref/pr_font_weight.asp*/
+    color:var(--black);/*該var()函數用於插入 CSS 變量的值。使用 var() 的優點是：使代碼更易於閱讀（更易於理解）、使更改顏色值變得更加容易 : https://www.w3schools.com/css/css3_variables.asp*/
+}
+
+.header .header-1 .logo i{
+    color:var(--green);
+}
+
+.header .header-1 .search-form{
+    width:50rem;
+    height:5rem;
+    border:var(--border);
+    overflow: hidden;/*overflow屬性指定當元素的內容太大而無法放入指定區域時是否剪切內容或添加滾動條，hidden- 溢出被剪掉，其餘內容將不可見 :https://www.w3schools.com/css/css_overflow.asp。*/
+    background:#fff;
+    display:flex;
+    align-items: center;/*align-items屬性指定靈活容器內項目的默認對齊方式。 : https://www.w3schools.com/cssref/css3_pr_align-items.asp*/
+    border-radius: .5rem;
+}
+
+.header .header-1 .search-form input{
+    font-size: 1.6rem;
+    padding:0 1.2rem;
+    height:100%;
+    width:100%;
+    text-transform: none;/*text-transform屬性控製文本的大小寫 : https://www.w3schools.com/cssref/pr_text_text-transform.asp。*/
+    color:var(--black);
+}
+
+.header .header-1 .search-form label{
+    font-size: 2.5rem;
+    padding-right: 1.5rem;
+    color:var(--black);
+    cursor: pointer;/*cursor屬性指定指向元素時要顯示的鼠標光標。 : https://www.w3schools.com/cssref/pr_class_cursor.asp*/
+}
+
+.header .header-1 .search-form label:hover{/*:hover您將鼠標懸停在元素上時，選擇器用於選擇元素 :https://www.w3schools.com/cssref/sel_hover.asp。*/
+    color:var(--green);
+}
+
+.header .header-1 .icons h4{
+    margin-left: 1.5rem;
+    font-size:18px; 
+    font-family:微軟正黑體; 
+    color: red; 
+    user-select:none;
+}
+
+.header .header-1 .icons div,
+.header .header-1 .icons a{
+    font-size: 2.5rem;
+    margin-left: 1.5rem;
+    color:var(--black);
+    cursor: pointer;
+}
+
+.header .header-1 .icons div:hover,
+.header .header-1 .icons a:hover{
+    color:var(--green);
+}
+
+#search-btn{
+    display: none;
+}
+
+.header .header-2{
+    position:fixed;
+    background:hsla(0,0%,100%,.3);
+    top:60px; left:0; right:0;
+    z-index: 1000;
+}
+
+.header .header-2 .navbar{
+    text-align: center;/*text-align屬性指定元素中文本的水平對齊方式 :https://www.w3schools.com/cssref/pr_text_text-align.ASP。*/
+}
+
+.header .header-2 .navbar a{
+    color:#fff;
+    display: inline-block;/*inline-block~~將元素顯示為內聯級塊容器。元素本身被格式化為內聯元素，但您可以應用高度和寬度值 :https://www.w3schools.com/css/css_inline-block.asp*/
+    /*display: inline-block;~~與 相比display: inline，主要區別在於display: inline-block允許在元素上設置寬度和高度。此外，使用 時 display: inline-block，會尊重頂部和底部邊距/填充，但display: inline不會使用。與相比display: block，主要區別在於display: inline-block元素後不添加換行符，因此該元素可以與其他元素相鄰。*/
+    padding:1.2rem;
+    font-size: 1.7rem;
+}
+
+.header .header-2 .navbar a:hover{
+    color: #03fc56;
+}
+
+.header .header-2.active{
+    position:fixed;/*position屬性指定用於元素的定位方法的類型（靜態、相對、絕對、固定或粘性），fixed~~The element is positioned relative to the browser window   
+ :https://www.w3schools.com/cssref/pr_class_position.asp。*/
+    top:0; left:0; right:0;
+    z-index: 1000;/*z-index屬性指定元素的堆棧順序 : https://www.w3schools.com/cssref/pr_pos_z-index.asp。*/
+
+}
+
+.bottom-navbar{
+    text-align: center;
+    background:var(--green);
+    position: fixed;
+    bottom:0; left:0; right:0;
+    z-index: 1000;
+    display: none;
+}
+
+.bottom-navbar a{
+    font-size: 2.5rem;
+    padding:2rem;
+    color:#fff;
+}
+
+.bottom-navbar a:hover{
+    background:var(--dark-color);
+}
+
+.buy-container{
+    display: flex;
+    align-items: center;/*align-items屬性指定靈活容器內項目的默認對齊方式。 : https://www.w3schools.com/cssref/css3_pr_align-items.asp*/
+    justify-content: center;
+    background:rgba(255,255,255,.9);
+    position:fixed;
+    top:0; right:-105%;
+    z-index: 10000;
+    height:100%;
+    width:100%;
+}
+
+.buy-container.active{
+    right:0;
+}
+
+.enlarge-container form{
+    background:#fff;
+    border:var(--border);
+    width:40rem;
+    padding:2rem;
+    box-shadow: var(--box-shadow);/*box-shadow屬性用於為元素應用一個或多個陰影 :https://www.w3schools.com/css/css3_shadows_box.asp。*/
+    border-radius: .5rem;/*該border-radius屬性定義元素角的半徑。提示：此屬性允許您為元素添加圓角！ :https://www.w3schools.com/cssref/css3_pr_border-radius.asp*/
+    margin:2rem;/*margin屬性設置元素的邊距，並且是以下屬性的簡寫屬性：邊距頂部、右邊距、邊距底部、左邊距 :https://www.w3schools.com/cssref/pr_margin.asp*/
+}
+
+.enlarge-container form h3{
+    font-size: 2.5rem;
+    text-transform: uppercase;/*text-transform屬性控製文本的大小寫，uppercase~~將所有字符轉換為大寫 :https://www.w3schools.com/cssref/pr_text_text-transform.asp。*/
+    color:var(--black);
+    text-align: center;
+}
+
+.enlarge-container form span{
+    display: block;/*display屬性指定元素的顯示行為（呈現框的類型）block~~將元素顯示為塊元素（如 <p>）。它從新的一行開始，佔據整個寬度 :https://www.w3schools.com/cssref/pr_class_display.asp。*/
+    font-size: 1.5rem;
+    padding-top: 1rem;
+}
+
+.enlarge-container form .box{
+    width: 100%;
+    margin:.7rem 0;
+    font-size: 1.6rem;
+    border:var(--border);
+    border-radius: .5rem;
+    padding:1rem 1.2rem;
+    color:var(--black);
+    text-transform: none;
+}
+
+.enlarge-container form .checkbox{
+    display:flex;
+    align-items: center;/*align-items屬性指定靈活容器內項目的默認對齊方式。 : https://www.w3schools.com/cssref/css3_pr_align-items.asp*/
+    gap:.5rem;/*該屬性定義了行和列gap之間的間隙大小 :https://www.w3schools.com/cssref/css3_pr_gap.asp。*/
+    padding:1rem 0;
+}
+
+.enlarge-container form .checkbox label{
+    font-size: 1.5rem;
+    color:var(--light-color);
+    cursor: pointer;
+}
+
+.enlarge-container form .btn{
+    text-align: center;
+    width:100%;
+    margin:1.5rem 0;
+}
+
+.enlarge-container form p{
+    padding-top: .8rem;
+    color:var(--light-color);
+    font-size: 1.5rem;
+}
+
+.enlarge-container form p a{
+    color:var(--green);
+    text-decoration: underline;/*text-decoration屬性指定添加到文本的裝飾，underline~~底線*/
+}
+
+.buy-container #close-buy-btn{
+    position: absolute;/*position屬性指定用於元素的定位方法的類型（靜態、相對、絕對、固定或粘性），absolute~~絕對。*/
+    top:1.5rem; right:2.5rem;
+    font-size: 5rem;
+    color:var(--black);
+    cursor: pointer;
+}
+
+.home{
+    top: 70px;
+    background: url(../images/banner-bg.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.home .row{
+    display:flex;
+    align-items: center;/*align-items屬性指定靈活容器內項目的默認對齊方式。 : https://www.w3schools.com/cssref/css3_pr_align-items.asp*/
+    flex-wrap: wrap;/*該flex-wrap屬性指定靈活項是否應該換行。注意：如果元素不是靈活項，則該flex-wrap屬性無效 wrap~~指定靈活的項目將在必要時換行
+: https://www.w3schools.com/cssref/css3_pr_flex-wrap.asp。*/
+    gap:1.5rem;/*該屬性定義了行和列gap之間的間隙大小 :https://www.w3schools.com/cssref/css3_pr_gap.asp。*/
+}
+
+.home .row .content{
+    flex:1 1 42rem;/*該flex屬性設置靈活項目的靈活長度，該flex屬性是以下的簡寫屬性：彈性成長、彈性收縮、彈性基礎 :https://www.w3schools.com/cssref/css3_pr_flex.asp。*/
+}
+
+.home .row .books-slider{
+    flex:1 1 42rem;
+    text-align: center;
+    margin-top: 2rem;
+    top: 70px;
+}
+
+.home .row .books-slider a img{
+    height: 25rem;
+}
+
+.home .row .books-slider a:hover img{
+    transform: scale(.9);/*transform屬性將 2D 或 3D 變換應用於元素。此屬性允許您旋轉、縮放、移動、傾斜等元素，scale(x,y)~~定義 2D 比例變換 :https://www.w3schools.com/cssref/css3_pr_transform.asp。*/
+}
+
+.home .row .books-slider .stand{
+    width:100%;
+    margin-top: -2rem;
+}
+
+.home .row .content h3{
+    color:#FFFFFF;
+    font-size: 4.5rem;
+}
+
+.home .row .content p{
+    color:#FFFFFF;
+    font-size: 1.4rem;
+    line-height: 2;/*line-height屬性指定線的高度 :https://www.w3schools.com/cssref/pr_dim_line-height.asp。*/
+    padding:1rem 0;
+}
+
+.icons-container{
+    display: grid;/*grid~~將元素顯示為塊級網格容器*/
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));/*grid-template-columns屬性指定網格佈局中的列數（和寬度）:https://www.w3schools.com/cssref/pr_grid-template-columns.asp。*/
+    gap:1.5rem;/*該屬性定義了行和列gap之間的間隙大小 :https://www.w3schools.com/cssref/css3_pr_gap.asp。*/
+}
+
+.icons-container .icons{
+    display: flex;/*flex~~將元素顯示為塊級彈性容器*/
+    align-items: center;/*align-items屬性指定靈活容器內項目的默認對齊方式。 : https://www.w3schools.com/cssref/css3_pr_align-items.asp*/
+    gap:1.5rem;/*該屬性定義了行和列gap之間的間隙大小 :https://www.w3schools.com/cssref/css3_pr_gap.asp。*/
+    padding:2rem 0;
+}
+
+.icons-container .icons i{
+    font-size: 3.5rem;
+    color:var(--green);
+}
+
+.icons-container .icons h3{
+    font-size: 2.2rem;
+    color:var(--black);
+    padding-bottom: .5rem;
+}
+
+.icons-container .icons p{
+    font-size: 1.4rem;
+    color:var(--light-color);
+}
+
+.featured .featured-slider .box{
+    margin:2rem 0;
+    position: relative;/*relative~~相對的~~元素相對於其正常位置定位，因此“left:20px”在元素的 LEFT 位置增加 20 個像素 播放 :https://www.w3schools.com/cssref/pr_class_position.asp*/
+    overflow: hidden;/*使用該hidden值，溢出被剪裁，其餘內容被隱藏：*/
+    border:var(--border);
+    text-align: center;
+    width:300px;
+    height:450px;
+}
+
+.featured .featured-slider .box:hover{
+    border:var(--border-hover);
+}
+
+.featured .featured-slider .box .image{
+    padding:1rem;
+    background: linear-gradient(15deg, #eee 30%, #fff 30.1%);/*linear-gradient() 函數將線性漸變設置為背景圖像 :https://www.w3schools.com/cssref/func_linear-gradient.asp。*/
+}
+
+/* .featured .featured-slider .box:hover .image{
+    transform: translateY(6rem);transform屬性將 2D 或 3D 變換應用於元素。此屬性允許您旋轉、縮放、移動、傾斜等元素。 translateY(y)~~定義平移，僅使用 Y 軸的值
+   :https://www.w3schools.com/cssref/css3_pr_transform.asp。
+} */
+
+.featured .featured-slider .box .image img{
+    height: 25rem;
+}
+
+.featured .featured-slider .box .icons{
+    border-bottom: var(--border-hover);
+    position: absolute;/*absolute~~絕對位置~~元素相對於它的第一個定位（非靜態）祖先元素定位播放它 :https://www.w3schools.com/cssref/pr_class_position.asp*/
+    top:0; left:0; right: 0;
+    background: #fff;
+    z-index: 1;
+    transform: translateY(-105%);/*transform屬性將 2D 或 3D 變換應用於元素。此屬性允許您旋轉、縮放、移動、傾斜等元素。 translateY(y)~~定義平移，僅使用 Y 軸的值
+   :https://www.w3schools.com/cssref/css3_pr_transform.asp。*/
+}
+
+.featured .featured-slider .box:hover .icons{
+    transform: translateY(0%);/*transform屬性將 2D 或 3D 變換應用於元素。此屬性允許您旋轉、縮放、移動、傾斜等元素。 translateY(y)~~定義平移，僅使用 Y 軸的值
+   :https://www.w3schools.com/cssref/css3_pr_transform.asp。*/
+}
+
+.featured .featured-slider .box .icons a{
+    color:var(--black);
+    font-size: 2.2rem;
+    padding:1.3rem 1.5rem;
+}
+
+.featured .featured-slider .box .icons a:hover{
+    background:var(--green);
+    color:#fff;
+}
+
+.featured .featured-slider .box .content{
+    background:#eee;
+    padding:1.5rem;
+}
+
+.featured .featured-slider .box .content h3{
+    font-size: 2rem;
+    color:var(--black);
+}
+
+.featured .featured-slider .box .content .price{
+    font-size: 2.2rem;
+    color:var(--black);
+    padding-top: 1rem;
+}
+
+.featured .featured-slider .box .content .price span{
+    font-size: 1.5rem;
+    color:var(--light-color);
+    text-decoration: line-through;/*text-decoration屬性指定添加到文本的裝飾，line-through~~刪除線 :https://www.w3schools.com/cssref/pr_text_text-decoration.asp*/
+}
+
+.swiper-button-next,
+.swiper-button-prev{
+    border:var(--border-hover);
+    height:4rem;
+    width:4rem;
+    color:var(--black);
+    background: #fff;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after{/*選擇::after器在每個選定元素的內容{之後}插入一些內容 :https://www.w3schools.com/cssref/sel_after.asp。*/
+    font-size: 2rem;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover{
+    background: var(--black);
+    color:#fff;
+}
+
+.newsletter{
+    background:url(../images/letter-bg.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;/*background-attachment屬性設置背景圖像是與頁面的其餘部分一起滾動還是固定的，fixed~~背景圖片不會隨頁面滾動。*/
+}
+
+.newsletter form{
+    max-width: 45rem;/*max-width屬性定義元素的最大寬度 :https://www.w3schools.com/cssref/pr_dim_max-width.asp。*/
+    margin-left: auto;
+    text-align: center;
+    padding:5rem 0;
+}
+
+.newsletter form h3{
+    font-size: 2.2rem;
+    color:#fff;
+    padding-bottom: .7rem;
+    font-weight: normal;/*font-weight屬性設置文本中字符的粗細程度，normal~~定義普通字符。這是默認演示 :https://www.w3schools.com/cssref/pr_font_weight.asp。*/
+}
+
+.newsletter form .box{
+    width: 100%;
+    margin: .7rem 0;
+    padding:1rem 1.2rem;
+    font-size: 1.6rem;
+    color:var(--black);
+    border-radius: .5rem;/*border-radius屬性定義元素角的半徑 :https://www.w3schools.com/cssref/css3_pr_border-radius.asp。*/
+    text-transform: none;/*text-transform屬性控製文本的大小寫 :https://www.w3schools.com/cssref/pr_text_text-transform.asp。*/
+}
+
+.arrivals .arrivals-slider .box{
+    display: flex;
+    align-items:center;
+    gap:1.5rem;
+    padding:2rem 1rem;
+    border:var(--border);
+    margin:1rem 0;
+    width:250px;
+    height:200px;
+}
+
+.arrivals .arrivals-slider .box:hover{
+    border:var(--border-hover);
+}
+
+.arrivals .arrivals-slider .box .image img{
+    height:15rem;
+}
+
+.arrivals .arrivals-slider .box .content h3{
+    font-size: 2rem;
+    color:var(--black);
+}
+
+.arrivals .arrivals-slider .box .content .price{
+    font-size: 2.2rem;
+    color:var(--black);
+    padding-bottom: .5rem;
+}
+
+.arrivals .arrivals-slider .box .content .price span{
+    font-size: 1.5rem;
+    color:var(--light-color);
+    text-decoration: line-through;
+}
+
+.arrivals .arrivals-slider .box .content .stars i{
+    font-size: 1.5rem;
+    color:var(--green);
+}
+
+.deal{
+    background:#f3f3f3;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;/*flex-wrap屬性指定靈活項是否應該換行，wrap~~指定彈性項目在必要時將包裹 :https://www.w3schools.com/cssref/css3_pr_flex-wrap.asp。*/
+    gap:1.5rem;/*該屬性定義了行和列gap之間的間隙大小。它是以下屬性的簡寫：行間隙、柱間隙 :https://www.w3schools.com/cssref/css3_pr_gap.asp*/
+}
+
+.deal .content{
+    flex:1 1 42rem;/*flex屬性是以下的簡寫屬性：彈性成長、彈性收縮、彈性基礎，flex屬性設置靈活項目的靈活長度 :https://www.w3schools.com/cssref/css3_pr_flex.asp。*/
+}
+
+.deal .image{
+    flex:1 1 42rem;
+}
+
+.deal .image img{
+    width: 100%;
+}
+
+.deal .content h3{
+    color:var(--green);
+    font-size: 2.5rem;
+    padding-bottom: .5rem;
+}
+
+.deal .content h1{
+    color:var(--black);
+    font-size: 4rem;
+}
+
+.deal .content p{
+    padding:1rem 0;
+    color:var(--light-color);
+    font-size: 1.4rem;
+    line-height: 2;/*line-height屬性指定線的高度(列高) :https://www.w3schools.com/cssref/pr_dim_line-height.asp。*/
+}
+
+.reviews .reviews-slider .box{
+    border:var(--border);
+    padding:2rem;
+    text-align: center;
+    margin:2rem 0;
+}
+
+.reviews .reviews-slider .box:hover{
+    border:var(--border-hover);
+}
+
+.reviews .reviews-slider .box img{
+    height:7rem;
+    width:7rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.reviews .reviews-slider .box h3{
+    color:var(--black);
+    font-size: 2.2rem;
+    padding:.5rem 0;
+}
+
+.reviews .reviews-slider .box p{
+    color:var(--light-color);
+    font-size: 1.4rem;
+    padding:1rem 0;
+    line-height: 2;
+}
+
+.reviews .reviews-slider .box .stars{
+    padding-top: .5rem;
+}
+
+.reviews .reviews-slider .box .stars i{
+    font-size: 1.7rem;
+    color:var(--green);
+}
+
+.blogs .blogs-slider .box{
+    margin:2rem 0;
+    border:var(--border);
+}
+
+.blogs .blogs-slider .box:hover{
+    border:var(--border-hover);
+}
+
+.blogs .blogs-slider .box .image{
+    height: 25rem;
+    width: 100%;
+    overflow: hidden;
+}
+
+.blogs .blogs-slider .box .image img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.blogs .blogs-slider .box:hover .image img{
+    transform: scale(1.1);
+}
+
+.blogs .blogs-slider .box .content{
+    padding:1.5rem;
+}
+
+.blogs .blogs-slider .box .content h3{
+    font-size: 2.2rem;
+    color:var(--black);
+}
+
+.blogs .blogs-slider .box .content p{
+    font-size: 1.4rem;
+    color:var(--light-color);
+    padding:1rem 0;
+    line-height: 2;
+}
+
+.footer .box-container{
+    display: grid;/*grid~~將元素顯示為塊級網格容器 :https://www.w3schools.com/cssref/pr_class_display.asp*/
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));/*grid-template-columns屬性指定網格佈局中的列數（和寬度）:https://www.w3schools.com/cssref/pr_grid-template-columns.asp。*/
+    gap:1.5rem;
+}
+
+.footer .box-container .box h3{
+    font-size: 2.2rem;
+    color:var(--black);
+    padding:1rem 0;
+}
+
+.footer .box-container .box a{
+    display: block;
+    font-size: 1.4rem;
+    color:var(--light-color);
+    padding:1rem 0;
+}
+
+.footer .box-container .box a i{
+    color:var(--green);
+    padding-right: .5rem;
+}
+
+.footer .box-container .box a:hover i{
+    padding-right: 2rem;
+}
+
+.footer .box-container .box .map{
+    width:100%;
+}
+
+.footer .share{
+    padding:1rem 0;
+    text-align: center;
+}
+
+.footer .share a{
+    height: 5rem;
+    width: 5rem;
+    line-height: 5rem;
+    font-size: 2rem;
+    color:#fff;
+    background:var(--green);
+    margin:0 .3rem;
+    border-radius: 50%; 
+}
+
+.footer .share a:hover{
+    background:var(--black);
+}
+
+.footer .credit{
+    border-top: var(--border);/*border-top速記屬性在一個聲明中設置所有上邊框屬性 :https://www.w3schools.com/cssref/pr_border-top.asp。*/
+    margin-top: 2rem;/*margin-top屬性設置元素的上邊距 :https://www.w3schools.com/cssref/pr_margin-top.asp。*/
+    padding:0 1rem;
+    padding-top: 2.5rem;/*padding-top屬性設置元素的頂部填充（空格）:https://www.w3schools.com/cssref/pr_padding-top.asp。*/
+    font-size: 2rem;
+    color:var(--light-color);
+    text-align: center;
+}
+
+.footer .credit span{
+    color:var(--green);
+}
+
+.loader-container{
+    position: fixed;/*fixed(固定的)~~元素相對於瀏覽器窗口定位 播放 :https://www.w3schools.com/cssref/pr_class_position.asp*/
+    top:0; left: 0;
+    height:100%;
+    width: 100%;
+    z-index: 10000;
+    background:#f7f7f7;
+    display: flex;
+    align-items: center;/*align-items屬性指定靈活容器內項目的默認對齊方式 :https://www.w3schools.com/cssref/css3_pr_align-items.asp。*/
+    justify-content: center;/*justify-content當項目未使用主軸（水平）上的所有可用空間時，該屬性對齊靈活容器的項目，，提示：使用align-items屬性垂直對齊項目 :https://www.w3schools.com/cssref/css3_pr_justify-content.asp。*/
+}
+
+.loader-container.active{
+    display: none;/*display屬性指定元素的顯示行為（呈現框的類型），none~~元素被完全移除 :https://www.w3schools.com/cssref/pr_class_display.asp。*/
+}
+
+.loader-container img{
+    height:10rem;
+}
+
+
+/* media queries ~該@media規則在媒體查詢中用於為不同的媒體類型/設備應用不同的樣式 :https://www.w3schools.com/cssref/css3_pr_mediaquery.asp。*/
+
+@media (max-width:991px){
+
+    html{
+        font-size: 55%;
+    }
+
+    .header .header-1{
+        padding:2rem;
+    }
+
+    section{
+        padding:3rem 2rem;
+    }
+
+}
+
+@media (max-width:768px){
+
+    html{
+        scroll-padding-top: 0;
+    }
+
+    body{
+        padding-bottom: 6rem;
+    }
+
+    .header .header-2{
+        display:none;
+    }
+
+    .bottom-navbar{
+        display: block;
+    }
+
+    #search-btn{
+        display: inline-block;/*inline-block~~將元素顯示為內聯級塊容器。元素本身被格式化為內聯元素，但您可以應用高度和寬度值 :https://www.w3schools.com/css/css_inline-block.asp*/
+        /*display: inline-block;~~與 相比display: inline，主要區別在於display: inline-block允許在元素上設置寬度和高度。此外，使用 時 display: inline-block，會尊重頂部和底部邊距/填充，但display: inline不會使用。與相比display: block，主要區別在於display: inline-block元素後不添加換行符，因此該元素可以與其他元素相鄰。*/
+    }
+
+    .header .header-1{
+        box-shadow: var(--box-shadow);
+        position: relative;
+    }
+
+    .header .header-1 .search-form{
+        position:absolute;
+        top:-115%; right:2rem;
+        width: 90%;
+        box-shadow: var(--box-shadow);
+    }
+
+    .header .header-1 .search-form.active{/*搭配js第4、10行做切換*/
+        top:115%;/*視窗過小時自動隱藏，直至按下後而向下彈出*/
+    }
+
+    .home .row .content{
+        text-align: center;
+    }
+
+    .home .row .content h3{
+        font-size: 3.5rem;
+    }
+
+    .newsletter{
+        background-position: right;
+    }
+
+    .newsletter form{
+        margin-left:0;
+        max-width: 100%;
+    }
+}
+
+@media (max-width:450px){
+
+    html{
+        font-size: 50%;
+    }
+
+}

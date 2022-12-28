@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Featured_style.css' %}">
+    <style type="text/css">
+        input[type=text], select {
+          width: 20%;
+          padding: 12px 10px;
+          margin: center;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          text-transform: lowercase;
+        }
+        input[type=text]:focus {
+          border: 2px solid #555;
+        }
+        input[type=submit]:hover {
+          background-color: #45a049;
+        }
+        .search{
+            font-size:18px; position:absolute; top:0%; left:28%; font-family:微軟正黑體;
+        }
+    </style>
+</head>
+<form method='POST'>
+    {% csrf_token %}
+    <div class="search">
+        <br><br><br><br><br><br>
+        筆記名 ：{{ productModelFilter.form.pname }}
+        價格 : {{ productModelFilter.form.pprice}}
+        內文關鍵字 : {{ productModelFilter.form.pdescription}}
+        <input type="submit" class="btn btn-primary" value="查詢" />
+    </div>
+</form>
+<br />
+<section class="featured" id="featured" style="user-select:none;">
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+    <h1 class="heading"> <span>搜尋結果</span> </h1>
+    <div class="swiper featured-slider">
+        {% for product in productModelFilter.qs %}
+            <div class="swiper-slide box">
+                <div class="content">
+                    <div class="imge">
+                        <img src="/media/{{product.pimages}}" alt="">
+                    </div>
+                    <div class="text">
+                        {{product.Simple_pdescription}}
+                    </div>
+                    <h3>{{product.pname}}</h3>
+                    <div class="price">${{product.pprice}} <span>$299</span></div>
+                    <a href="/detail/{{product.id}}" class="btn">立即購買</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

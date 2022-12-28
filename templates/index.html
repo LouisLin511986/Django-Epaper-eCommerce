@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index_style.css' %}">
+</head>
+<section class="home" id="home">
+    <div class="row">
+        <div class="content">
+            <h3>筆記</h3>
+            <p>買筆記賣筆記好場所</p>
+            <a href="/All/" class="btn">立即購物</a>
+        </div>
+        <div class="swiper books-slider">
+            <div class="swiper-wrapper">
+                {% for product in productall %}
+                <a href="/detail/{{product.id}}" class="swiper-slide"><img src="/media/{{product.pimages}}" alt=""></a>
+                {% endfor %}
+            </div>
+            <img src="{% static 'images/stand.png' %}" class="stand" alt="">
+        </div>
+    </div>
+</section>
+<section class="icons-container">
+    <div class="icons">
+        <i class="fas fa-toilet-paper-slash"></i>
+        <div class="content">
+            <h3>電子化</h3>
+            <p>全面E化 去紙張</p>
+        </div>
+    </div>
+    <div class="icons">
+        <i class="fas fa-lock"></i>
+        <div class="content">
+            <h3>交易安全</h3>
+            <p>100%安全交易</p>
+        </div>
+    </div>
+    <div class="icons">
+        <i class="fas fa-user-graduate"></i>
+        <div class="content">
+            <h3>學習幫手</h3>
+            <p>輕鬆學習 帶著走</p>
+        </div>
+    </div>
+    <div class="icons">
+        <i class="fas fa-cloud"></i>
+        <div class="content">
+            <h3>雲端處理</h3>
+            <p>上傳下載雲處理</p>
+        </div>
+    </div>
+</section>
+
+<section class="arrivals" id="arrivals">
+    <h1 class="heading"> <span>全筆記瀏覽</span> </h1>
+    <div class="swiper arrivals-slider">
+        <div class="swiper-wrapper">
+            {% for product in productall %}
+            <a href="/detail/{{product.id}}" class="swiper-slide box">
+                <div class="image">
+                    <img src="/media/{{product.pimages}}" alt="">
+                </div>
+                <div class="content">
+                    <h3>{{product.pname}}</h3>
+                    <div class="price">$ {{product.pprice}}
+                    {% if  product.special_offer != 0%}
+                        {% if product.special_offer > product.pprice %}
+                            <span>${{product.special_offer}}</span><br>
+                            <h6>特價<img src="{% static 'images/dis.png' %}" class="fa-solid fa-circle-info" alt=""></h6>
+                        {% endif %}
+                    {% endif %}
+                    </div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div><br>
+                    <div style="text-align: left;">
+                        <h4>有{{product.press}}人看過</h4></div>
+                </div>
+                {% endfor %}
+            </a>
+        </div>
+    </div>
+    <div class="swiper arrivals-slider">
+        <div class="swiper-wrapper">
+            {% for product in productall reversed%}
+            <a href="/detail/{{product.id}}" class="swiper-slide box">
+                <div class="image">
+                    <img src="/media/{{product.pimages}}" alt="">
+                </div>
+                <div class="content">
+                    <h3>{{product.pname}}</h3>
+                    <div class="price">$ {{product.pprice}}
+                        {% if product.special_offer > product.pprice %}
+                            <span>${{product.special_offer}}</span><br>
+                            <h6>特價<img src="{% static 'images/dis.png' %}" class="fa-solid fa-circle-info" alt=""></h6>
+                        {% endif %}
+                    </div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <br>
+                    <div style="text-align: left;">
+                        <h4>有{{product.press}}人看過</h4></div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="newsletter">
+    <form action="." method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h3>關注更多新訊息</h3>
+        <input type="email" name="e-mail" placeholder="輸入電子郵件" id="e-mail" class="box">
+        <input type="submit" value="關注" class="btn">
+        <h2 style="color:red; font-size: 18px;">{{mailhint}}</h2>
+    </form>
+</section>
+
+<section class="featured" id="featured">
+    <h1 class="heading"> <span>精選筆記</span> </h1>
+    <div class="swiper featured-slider">
+        <div class="swiper-wrapper">
+            {% for product in Featured_productall %}
+            <div class="swiper-slide box">
+                <div class="image">
+                    <img src="/media/{{product.pimages}}" alt="">
+                </div>
+                <div class="content">
+                    <h3>{{product.pname}}</h3>
+                    <div class="price">$ {{product.pprice}}
+                        {% if product.special_offer > product.pprice %}
+                            <span>${{product.special_offer}}</span><br>
+                            <h6>特價<img src="{% static 'images/dis.png' %}" class="fa-solid fa-circle-info" alt=""></h6>
+                        {% endif %}
+                    </div>
+                    <a href="/detail/{{product.id}}" class="btn">查看</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="featured" id="featured">
+    <h1 class="heading"> <span>新筆記推薦</span> </h1>
+    <div class="swiper featured-slider">
+        <div class="swiper-wrapper">
+            {% for product in New_productall %}
+            <div class="swiper-slide box">
+                <div class="image">
+                    <img src="/media/{{product.pimages}}" alt="">
+                </div>
+                <div class="content">
+                    <h3>{{product.pname}}</h3>
+                    <div class="price">$ {{product.pprice}}
+                        {% if product.special_offer > product.pprice %}
+                            <span>${{product.special_offer}}</span><br>
+                            <h6>特價<img src="{% static 'images/dis.png' %}" class="fa-solid fa-circle-info" alt=""></h6>
+                        {% endif %}
+                    </div>
+                    <a href="/detail/{{product.id}}" class="btn">查看</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="deal">
+    <div class="content">
+        <h3>輕鬆賣Note</h3>
+        <h1>賣Note</h1>
+        <p>想賣Note 這邊賣</p>
+        <a href="/addnew/" class="btn">馬上賣Note</a>
+    </div>
+    <div class="image">
+        <img src="{% static 'images/deal-img.jpg' %}" alt="">
+    </div>
+</section>
+
+
+{% endblock %}

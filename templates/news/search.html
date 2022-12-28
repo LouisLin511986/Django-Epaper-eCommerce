@@ -1,0 +1,27 @@
+{% block content %}
+ 
+<form method='POST'>
+    {% csrf_token %}
+    名稱：{{ newsUnitFilter.form.title }}
+    類型：{{ newsUnitFilter.form.catego }}
+    名子：{{ newsUnitFilter.form.nickname }}
+    <input type="submit" class="btn btn-primary" value="查詢" />
+</form>
+<br />
+<table class="table">
+    <thead>
+        <th>名稱</th>
+        <th>類型</th>
+        <th>名子</th>
+    </thead>
+    <tbody>
+        {% for news in newsUnitFilter.qs %}
+        <tr>
+            <td>{{ news.title }}</td>
+            <td>{{ news.catego }}</td>
+            <td>{{ news.nickname }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock  %}

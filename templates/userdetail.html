@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/book_style.css' %}">
+    <style type="text/css">
+    	input[type=text], select {
+			width: 100%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+			text-transform: lowercase;
+		}
+		td{
+			text-align: center;
+		}
+		input[type=submit]{
+			width: 10%;
+			background-color: #4CAF50;
+			color: white;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 20px;
+			align-items: center;
+			font-size:18px; 
+			position:absolute; 
+			bottom:0px; 
+			right:0px;
+			
+		}
+		input[type=submit]:hover {
+			background-color: #45a049;
+		}
+    </style>
+</head>
+{% if request.user.is_authenticated %}
+	<div class="contentbox" style="user-select:none;"><br><br><br><br><br><br><br><br><br><br>
+	{% csrf_token %}
+	 <span style="font-size: 3rem; padding:.5rem 2rem; color:var(--black); border:var(--border); font-weight:bold; ">帳戶訊息</span>
+	 <br><br><br>
+		<div>
+			<table width="90%" align="center">
+				<tr>
+					<td valign="baseline"><strong>使用者名稱</strong></td>
+					<td valign="baseline"><input type="text" size="45" value="{{request.user.username}}" disabled/></td>
+				</tr>
+				<tr>
+					<td valign="baseline"><strong>e-mail</strong></td>
+					<td valign="baseline"><input type="text" size="45" value="{{request.user.email}}" disabled/></td>
+				</tr>
+				<tr>
+					<td valign="baseline"><strong>姓氏</strong></td>
+					<td valign="baseline"><input type="text" size="45" value="{{request.user.first_name}}" disabled/></td>
+				</tr>
+				<tr>
+					<td valign="baseline"><strong>名字</strong></td>
+					<td valign="baseline"><input type="text" size="45" value="{{request.user.last_name}}" disabled/></td>
+				</tr>
+				<tr>
+					<td valign="baseline"><strong>最后一次登錄的日期时间</strong></td>
+					<td valign="baseline"><input type="text" size="45" value="{{request.user.last_login}}" disabled/></td>
+				</tr>
+				<tr>
+					<td valign="baseline"><strong>帳戶創建日期时间</strong></td>
+					<td valign="baseline"><input type="text" size="45" value="{{request.user.date_joined}}" disabled/></td>
+				</tr>
+				<tr>
+					<td valign="baseline"><strong>啟用狀態</strong></td>
+					<td valign="baseline"><input type="text" size="45" value="{{request.user.is_active}}" disabled/></td>
+				</tr>
+				<form action="." method="POST">
+					{% csrf_token %}
+					<tr>
+						<td valign="baseline"><strong>更改密碼</strong></td>
+						<td valign="baseline"><input name="password" type="text" placeholder="密碼" id="password" size="45" /></td>
+					</tr>
+					<span style="font-size:18px; position:absolute; bottom:32%; left:29%; font-family:微軟正黑體; color: red; user-select:none; font-weight:bold; ">{{message}}</span>
+					<input type="submit" name="button" id="button" value="確認變更密碼" /> 
+				</form>
+				{% if request.user.is_staff %}
+					<tr>
+						<td valign="baseline"><strong>超級使用者</strong></td>
+						<td valign="baseline"><input type="text" size="45" value="{{request.user.is_superuser}}" disabled/></td>
+					</tr>
+					<tr>
+						<td valign="baseline"><strong>是否可以訪問管理站點</strong></td>
+						<td valign="baseline"><input type="text" size="45" value="{{request.user.is_staff}}" disabled/></td>
+					</tr>
+					<tr>
+						<td valign="baseline"><strong>所屬群組</strong></td>
+						<td valign="baseline"><input type="text" size="45" value="{{request.user.groups}}" disabled/></td>
+					</tr>
+				{% else %}
+				{% endif %}
+			</table>
+		</div>
+	</div>
+{% else %}
+	<script type="text/javascript">
+		alert("無此權限，請先登入!!");
+		document.location.href="/login/";
+	</script>
+{% endif %}
+{% endblock %}

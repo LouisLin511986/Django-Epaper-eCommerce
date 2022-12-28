@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Featured_style.css' %}">
+</head>
+<section class="featured" id="featured" style="user-select:none;">
+    <h1 class="heading"> <br><br><br><br><br><br><span>筆記總覽</span> </h1>
+    <div class="swiper featured-slider">
+        {% for product in productall %}
+            <div class="swiper-slide box">
+                <div class="content">
+                    <div class="imge">
+                        <img src="/media/{{product.pimages}}" alt="">
+                    </div>
+                    <div class="text">
+                        {{product.Simple_pdescription}}
+                    </div>
+                    <h3>{{product.pname}}</h3>
+                    <div class="price">
+                        ${{product.pprice}} 
+                        {% if product.special_offer > product.pprice %}
+                            <span>${{product.special_offer}}</span><br>
+                            <h6>特價<img src="{% static 'images/dis.png' %}" class="fa-solid fa-circle-info" alt=""></h6>
+                        {% endif %}
+                    </div>
+                    <a href="/detail/{{product.id}}" class="btn">查看</a>
+                    {% if request.user.username == product.pcreatepeople %}
+                        <a href="/edit/{{product.id}}" class="btn">修改</a>
+                        <a href="/delete/{{product.id}}" class="btn">刪除</a>
+                    {% else %}
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
