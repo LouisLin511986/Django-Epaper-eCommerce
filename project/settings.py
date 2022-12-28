@@ -145,7 +145,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 #admin-ui
-DEBUG = False
+DEBUG = True
 SIMPLEUI_HOME_PAGE = 'http://127.0.0.1:8000/'
 SIMPLEUI_LOGO = '/static/images/Logo.png'
 
