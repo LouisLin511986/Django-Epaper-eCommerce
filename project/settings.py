@@ -1,3 +1,4 @@
+#render~~部屬 https://devpress.csdn.net/cicd/62ee063dc6770329307f31bf.html
 """
 Django settings for login project.
 
@@ -132,7 +133,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
 
 
 # Default primary key field type

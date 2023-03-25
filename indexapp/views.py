@@ -300,6 +300,10 @@ def check_ok(request, productid=None):
 
 	return render(request, "check_ok.html", locals())
 
+def test(request):
+
+	return render(request, "test.html", locals())
+
 class SendMail:
 	def auth(e_mail, content):
 			strSmtp = "smtp.gmail.com:587"
