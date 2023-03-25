@@ -9,13 +9,14 @@
         {% csrf_token %}
         <h1>Create 加入</h1>
         <input name="username" type="text" placeholder="使用者名稱(送出後無法修改)" id="username">
-        <input name="password" type="password" placeholder="密碼" id="password">
+        <input name="password" type="password" placeholder="密碼" id="password"><span id="showStrength"></span>
         <input name="first_name" type="text" placeholder="姓氏" id="first_name">
         <input name="last_name" type="text" placeholder="名字" id="last_name">
-        <input name="e-mail" type="text" placeholder="e-mail" id="e-mail">
+        <input name="e-mail" type="text" placeholder="e-mail" id="e-mail"><span id='msgE'></span>
         <input type="submit" name="button" id="button" value="註冊" /> 
         <input type="button" onclick="location.href='/login/';" value="登入" />
         <input type="button" onclick="location.href='/index/';" value="首頁" />
         <span style="color:red">{{message}}</span>
     </form>
+    <script src="{% static 'js/normal.js' %}"></script>
 </html>
