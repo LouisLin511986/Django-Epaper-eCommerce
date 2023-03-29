@@ -41,6 +41,9 @@ window.onload = function(){
             alert("您的輸入為空！");
         }
     }
+
+    
+
 // login page end
 
 // create page start
@@ -124,14 +127,14 @@ window.onload = function(){
     //常見的驗證規則開始
     var getRegular = function(rstr){
         var regData={};//正則資料儲存欄位
-        regData.rtrim = /^(\s|\u00A0)+|(\s|\u00A0)+$/g;// 去除空格的正則
-        regData.Chinese = /[\u4e00-\u9fa5]/g;//中文
-        regData.nonumber = /\D/g;//數字
-        regData.nochinese = /[^\u4e00-\u9fa5]/g;//非中文
+        // regData.rtrim = /^(\s|\u00A0)+|(\s|\u00A0)+$/g;// 去除空格的正則
+        // regData.Chinese = /[\u4e00-\u9fa5]/g;//中文
+        // regData.nonumber = /\D/g;//數字
+        // regData.nochinese = /[^\u4e00-\u9fa5]/g;//非中文
         regData.email = /^\s*[a-zA-Z0-9]+(([\._\-]?)[a-zA-Z0-9]+)*@[a-zA-Z0-9]+([_\-][a-zA-Z0-9]+)*(\.[a-zA-Z0-9]+([_\-][a-zA-Z0-9]+)*)+\s*$/;//郵件
-        regData.phone = /^\(?(\d{2})\)?[\s\-]?(\d{4})\-?(\d{4})$/;//電話
-        regData.decimalNumber = /^\d+(\.\d+)+$/;//帶小數位的數字
-        regData.htmlTags = /<[\/\!]*[^<>]*>/ig;//html
+        // regData.phone = /^\(?(\d{2})\)?[\s\-]?(\d{4})\-?(\d{4})$/;//電話
+        // regData.decimalNumber = /^\d+(\.\d+)+$/;//帶小數位的數字
+        // regData.htmlTags = /<[\/\!]*[^<>]*>/ig;//html
 
         return regData[rstr];
 
@@ -166,7 +169,10 @@ window.onload = function(){
     };
 
     forElementArr([
+        // document.getElementById("regUser"),
         document.getElementById("e-mail")
+        // document.getElementById("regPhone"),
+        // document.getElementById("regNumber")
     ], function(index, _this){
 
         _this.onkeyup = function(){
@@ -194,6 +200,21 @@ window.onload = function(){
         }
     });
     //常見的驗證規則結束
+
+    //設定表單中所有文字型的成員的值為空開始
+    var _test = document.getElementById("clear");
+        _test.onclick = function(){//為清空的文字綁定時間事件
+            var _elements = document.getElementById("create").elements,//設定表單中所有文字型的成員的值為空
+                    _elementsLen = _elements.length,
+                    _ei = null,
+                    i = 0;
+            for (; i < _elementsLen ; i++){//走訪所有元素
+                _ei = _elements[i];
+                (_ei.type == "text" || _ei.type == "textarea" || _ei.type == "password") && (_ei.value = "");
+            }
+        }
+    //設定表單中所有文字型的成員的值為空結束
+
 // create page end
 
 };

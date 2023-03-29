@@ -38,8 +38,7 @@ def adduser(request):
 	if request.method == 'POST':
 		name = request.POST['username']
 		password = request.POST['password']
-		first_name = request.POST['first_name']
-		last_name = request.POST['last_name']
+		repassword = request.POST['repassword']
 		e_mail = request.POST['e-mail']
 		try:
 			user=User.objects.get(username=name)
@@ -48,32 +47,32 @@ def adduser(request):
 		if user!=None:
 			message = user.username + " 帳號已建立!"
 			# return HttpResponse(message)
-		elif name=='' or password=='' or first_name=='' or last_name=='' or e_mail=='':
+		elif name=='' or password=='' or repassword=='' or e_mail=='':
 			message = '尚未填滿!!'
+		elif password != repassword:
+			message = '兩次密碼輸入未相同'
 		else:	# 建立 test 帳號			
 			user=User.objects.create_user(name,e_mail,password)
-			user.first_name=first_name # 姓名
-			user.last_name=last_name  # 姓氏
 			user.is_staff=False	# 工作人員狀態
 			user.save()
-			strSmtp = "smtp.gmail.com:587"
-			# strAccount = "" # 帳號
-			# strPD = "" # 密碼
-			content = "<h2>註冊資料 請妥善保存 不補發</h2><p>使用者名稱 : </p>"+name+"<p>使用者密碼 : </p>"+password
-			msg = MIMEText(content, "html")
-			msg["Subject"] = "歡迎"+name+"加入會員~~會員資料通知"
-			server = SMTP(strSmtp)
-			server.ehlo()
-			server.starttls()
-			try:
-				server.login(strAccount, strPD)
-				server.sendmail(strAccount, e_mail, msg.as_string())
-				usermailhint = "註冊已成功，郵件已發送！"
-			except SMTPAuthenticationError:
-				usermailhint = "無法登入！"
-			except:
-				usermailhint = "郵件發送產生錯誤！"
-			server.quit()
+			# strSmtp = "smtp.gmail.com:587"
+			# # strAccount = "" # 帳號
+			# # strPD = "" # 密碼
+			# content = "<h2>註冊資料 請妥善保存 不補發</h2><p>使用者名稱 : </p>"+name+"<p>使用者密碼 : </p>"+password
+			# msg = MIMEText(content, "html")
+			# msg["Subject"] = "歡迎"+name+"加入會員~~會員資料通知"
+			# server = SMTP(strSmtp)
+			# server.ehlo()
+			# server.starttls()
+			# try:
+			# 	server.login(strAccount, strPD)
+			# 	server.sendmail(strAccount, e_mail, msg.as_string())
+			# 	usermailhint = "註冊已成功，郵件已發送！"
+			# except SMTPAuthenticationError:
+			# 	usermailhint = "無法登入！"
+			# except:
+			# 	usermailhint = "郵件發送產生錯誤！"
+			# server.quit()
 			return redirect('/index/')
 	return render(request, "create.html", locals())
 

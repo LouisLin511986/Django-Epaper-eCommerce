@@ -3,9 +3,10 @@
     <head>
         <meta charset="utf-8">
         <title>login page</title>
+        <link rel="icon" href="{% static 'images/book-solid.svg' %}" type="image/x-icon">
         <link rel="stylesheet" type="text/css" href="{% static 'css/login_style.css' %}">
     </head>
-    <form action="." method="POST" name="form1" class="login">
+    <form action="." method="POST" name="form1" class="login" id="login">
         {% csrf_token %}
         <h1>Login 登入</h1>
         <input name="username" type="text" placeholder="Username 使用者名稱" id="username" autocomplete="off">
@@ -13,7 +14,7 @@
         <input type="submit" name="button" id="button" value="登入" />
         <input type="button" onclick="location.href='/create/';" value="註冊" />
         <input type="button" onclick="location.href='/index/';" value="首頁" />
-        <input type='button' id='rstrsBtn' value=' 測試 '>
+        <!-- <input type='button' id='test' value=' 測試 '> -->
         <span style="color:red">{{message}}</span>
     </form>
     <script src="{% static 'js/normal.js' %}"></script>
