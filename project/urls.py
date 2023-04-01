@@ -41,7 +41,8 @@ urlpatterns = [
     path('authAccess/',views.authAccess),
     path('check_ok/<int:productid>/',views.check_ok),
     path('downloadpage/',views.downloadpage),
-    path('test/', views.test),
+    path('test/', views.test),# 測試用網頁
+
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -25,24 +25,24 @@
                     {% else %}
                         <a id="buy-btn" class="btn" href="/login/">登錄購買</a><br>
                     {% endif %}
-                    <a id="enlarge-btn" class="btn">圖片放大</a><br>
-                    <!-- {% if request.user.is_authenticated %}
-                        <a class="btn" href="/media/{{product.uploadedFile}}"  download="{{product.uploadedFile}}">檔案下載</a>
-                    {% else %}
-                    {% endif %} -->
-                    <a class="btn" href="/media/{{product.pimages}}" download="{{product.pimages}}">圖片下載</a>
+                    <!-- <a class="btn" href="/media/{{product.pimages}}" download="{{product.pimages}}">圖片下載</a> -->
                 </div>
             </div>
             <h1 class="heading"> <span>內容簡介</span> </h1>
-            <h5>
+            <p>
+                <input id='fontSizeBig' value="大" type="button" />
+                <input id='fontSizeMedium' value="中" type="button" />
+                <input id='fontSizeSmall' value="小" type="button" />
+            </p>
+            <h5 id='fontSize_1'>
                 {{product.pdescription}}
             </h5><br><br><br>
             <h1 class="heading"> <span>作者介紹</span> </h1>
-            <h5>
+            <h5 id='fontSize_2'>
                 {{product.pauthor_introduce}}
             </h5><br><br><br>
             <h1 class="heading"> <span>詳細資料</span> </h1>
-            <h5>
+            <h5 id='fontSize_3'>
                 {{product.pdata}}
             </h5><br><br><br>
     </div>
@@ -67,24 +67,5 @@
     <div id="close-enlarge-btn" class="fas fa-times"></div>
     <img src="/media/{{product.pimages}}" style="width: 60rem; height: 90rem;">
 </div>
-
-<script type="text/javascript">
-    let buyphoto = document.querySelector('.buy-container');
-    let enlargephoto = document.querySelector('.enlarge-container');/*登入畫面*/
-
-    document.querySelector('#buy-btn').onclick = () =>{
-      buyphoto.classList.toggle('active');/*{彈出}切換至css798(top:115%;)*/
-    }
-    document.querySelector('#enlarge-btn').onclick = () =>{
-      enlargephoto.classList.toggle('active');/*{彈出}切換至css798(top:115%;)*/
-    }
-
-    document.querySelector('#close-buy-btn').onclick = () =>{
-      buyphoto.classList.remove('active');
-    }
-    document.querySelector('#close-enlarge-btn').onclick = () =>{
-      enlargephoto.classList.remove('active');/*{退出}*/
-    }
-
-</script>
+<script src="{% static 'js/normal.js' %}"></script>
 {% endblock %}

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+    {% load static %}
+	<style type="text/css">
+		a {
+			text-decoration:none;
+			color:rgb(0, 140, 255);
+			font-family:Microsoft JhengHei;
+		}
+		.container{
+			/* width: 100px; */
+			display: flex;
+			flex-wrap: wrap;
+			align-content: space-between;
+			height: 200px;
+		}
+		.item{
+			width: 100px;
+			height: 150px;
+			margin: 10px;
+			padding: 10px;
+		}
+		.img{
+			width: 100px; 
+			height: 100px;
+		}
+		.shape-ex1{
+		    width: 200px;
+		    height: 200px;
+		    background-color: #666;
+		}
+		#sitebody{
+			margin:0 auto;
+		}
+		#header{
+			background-color:#FFD4D4;
+			height:80px;
+			text-align:center;
+			line-height:80px;
+		}
+		#sidebar_left{
+			background-color:#FFECC9;
+			width:210px;
+			text-align:left;
+			float:left;
+		}
+		/* #sidebar_left{
+			background-color:#FFECC9;
+			width:120px;
+			text-align:center;
+			float:left;
+		} */
+		#content{
+			margin-left:120px;
+			/* margin-right:120px; */
+			height:auto;
+			width: auto;
+			text-align:center;
+		}
+		#footer{
+			clear:both;
+			background-color:#FFD4D4;
+			text-align:center;
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+			height:auto;
+		}
+	</style>
+</head>
+<body>
+	<div id="sitebody">
+		<div id="header">header</div>
+		<div id="sidebar_left">
+			{% for access_num in access %}
+					<a class='item' id="item" href="/media/{{access_num.File}}">.{{access_num.pname}}</a><br>
+			{% endfor %}
+		</div>
+		<!-- <div id="sidebar_right">sidebar_right</div> -->
+		<div id="content">
+			<div class="container">
+				{% for access_num in access %}
+				<a class='item' id="item" href="/media/{{access_num.File}}" align="center">
+					<img class='img' id="img" src="{% static 'images/PDF.png' %}">
+					{{access_num.pname}}
+				</a>
+				{% endfor %}
+			</div>
+		</div>
+		<div id="footer">footer</div>
+	</div>
+
+	
+	<!-- <div class="shape-ex1" onclick="myFunction()" ></div> -->
+	<!-- <a class='show' href="D:\Users\OneDrive - 正修科技大學\文件\其他\bitcoin.pdf"></a> -->
+	<!-- <button id="demo6">Demo 6</button> -->
+</body>
+</html>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript">
+    // window.onload = function(){
+    //     document.getElementById("img").style.display="none";
+    // }
+    
+	i = 0, try_count = 0;
+	function myFunction(){
+		i += 1;
+
+		if(i ==3){
+
+		}
+		// var showtxt = document.querySelector('.show');
+		
+		if (i==3) {
+			if (try_count < 3) {
+				var account = window.prompt('請輸入帳號 :');
+				if (account == "123") {
+					var password = window.prompt('請輸入密碼 :');
+	            	if (password == "123") {
+						swal("Welcome!!")
+                        // document.getElementById("img").style.display="";
+	            		// showtxt.innerHTML = 'View'
+	            	}
+	            	else{
+	            		alert("Error")
+	            		try_count += 1
+	            	} 
+	            }
+		        else{
+		        	alert("Error")
+		        	try_count += 1
+		        }
+			}
+			else{
+				alert("錯誤超過3次!!")
+			}
+			// window.open("https://www.google.com.tw/", 'news', config='height=550, width=800');
+			// window.location.replace("https://www.google.com.tw/")
+			i = 0;
+		}
+		
+	}
+
+	document.getElementById("demo6").addEventListener("click",function(){
+	  swal("請輸入帳號 :", {
+	    content: "input",
+	  })
+	  .then((value) => {
+	    if (value == "123"){
+	        swal("請輸入密碼 :", {
+                content: "input",
+            })
+            .then((value) => {
+                if (value == "123"){
+                    swal(`Welcome!.`);
+                    }
+                else{
+                    swal("False!", "You account isn't True.", "error", {button: "Click Me!"});
+                }
+            });
+            }
+        else{
+            swal("False!", "You account isn't True.", "error", {button: "Click Me!"});
+        }
+	  });
+	});
+
+</script>

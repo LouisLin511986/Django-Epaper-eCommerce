@@ -217,5 +217,51 @@ window.onload = function(){
 
 // create page end
 
+
+//detail page start
+    //圖片放大效果start
+    let buyphoto = document.querySelector('.buy-container');
+    let enlargephoto = document.querySelector('.enlarge-container');/*登入畫面*/
+
+    document.querySelector('#buy-btn').onclick = () =>{
+    buyphoto.classList.toggle('active');/*{彈出}切換至css798(top:115%;)*/
+    }
+    document.querySelector('#close-buy-btn').onclick = () =>{
+    buyphoto.classList.remove('active');
+    }
+    //圖片放大效果end
+    
+    
+//detail page end
 };
 
+//detail page start
+
+//字體的大小變化start
+var _fontSize_1 = document.getElementById("fontSize_1"),
+_fontSize_2 = document.getElementById("fontSize_2"),
+_fontSize_3 = document.getElementById("fontSize_3"),//獲取元素物件
+fontSize = function(e, unit){//設定元素字體大小
+    e.style.fontSize = unit;
+};
+
+document.getElementById("fontSizeBig").onclick = function(){//大字體設定
+    fontSize(_fontSize_1, "30px");
+    fontSize(_fontSize_2, "30px");
+    fontSize(_fontSize_3, "30px");
+}
+
+document.getElementById("fontSizeMedium").onclick = function(){ //中字體設定
+    fontSize(_fontSize_1, "25px");
+    fontSize(_fontSize_2, "25px");
+    fontSize(_fontSize_3, "25px");
+}
+
+document.getElementById("fontSizeSmall").onclick = function(){//小字體設定
+    fontSize(_fontSize_1, "20px");
+    fontSize(_fontSize_2, "20px");
+    fontSize(_fontSize_3, "20px");
+}
+//字體的大小變化end
+
+//detail page end

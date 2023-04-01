@@ -5,7 +5,7 @@ from email.mime.base import MIMEBase
 from email import encoders
 from indexapp import models
 from .models import ProductModel
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from smtplib import SMTP, SMTPAuthenticationError, SMTPException
 from django.contrib.auth import authenticate
 from django.contrib import auth
@@ -240,7 +240,8 @@ def edit(request , id):
 
 def userdetail(request):
 	if request.user.is_authenticated:
-		name=request.user.username
+		name = request.user.username
+		# current_group_set = Group.objects.get(user = request.user)
 	if request.method == 'POST':
 		password = request.POST['password']
 		if len(password) >= 8:
@@ -300,7 +301,9 @@ def check_ok(request, productid=None):
 	return render(request, "check_ok.html", locals())
 
 def test(request):
-
+	access = models.authorized.objects.all()
+	count = len(access)
+	
 	return render(request, "test.html", locals())
 
 class SendMail:
