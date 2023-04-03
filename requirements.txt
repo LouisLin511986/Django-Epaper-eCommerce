@@ -49,7 +49,7 @@ Flask-Migrate==4.0.4
 Flask-SQLAlchemy==3.0.3
 Flask-WTF==1.1.1
 flatbuffers==23.3.3
-fonttools==4.39.2
+fonttools==4.38.0
 frozendict==2.3.6
 future==0.18.3
 gast==0.5.3
