@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta http-equiv="refresh" content="5"> -->
+	<title></title>
+    {% load static %}
+	<style type="text/css">
+        html, body {
+            height: 100%; /*外層高度100%*/
+            margin: 0;
+            }
+		.container{
+			/* width: 100px; */
+			display: flex;
+			flex-wrap: wrap;
+			align-content: space-between;
+			height: 200px;
+		}
+		.item{
+			width: 100px;
+			height: 150px;
+			margin: 10px;
+			padding: 10px;
+		}
+		.img{
+			width: 100px; 
+			height: 100px;
+		}
+		#sitebody{
+			margin:0 auto;
+            min-height: 100%; /*外層高度100%*/
+            margin-bottom: -50px; /*隨footer高度需做調整*/
+		}
+		#header{
+			background-color:#FFD4D4;
+			height:80px;
+			text-align:center;
+			line-height:80px;
+            font-size:40px;
+            font-family:Microsoft JhengHei;
+            font-weight:bold;
+		}
+		#sidebar_left{
+			background-color:#FFECC9;
+			width:210px;
+			text-align:center;
+			float:left;
+		}
+		/* #sidebar_right{
+			background-color:#FFECC9;
+			width:120px;
+			text-align:center;
+			float:left;
+		} */
+		#content{
+			margin-left:120px;
+			/* margin-right:120px; */
+			height:auto;
+			width: auto;
+			text-align:center;
+            padding-bottom: 50px; /*避免文字超出瀏覽器時，內容區塊不會和footer打架*/
+		}
+		#footer{
+			clear:both;
+			background-color:#FFD4D4;
+			text-align:center;
+			/* position: fixed;
+			bottom: 0; */
+			width: 100%;
+			height: 50px; /*設定footer本身高度*/
+		}
+	</style>
+</head>
+<body>
+	<div id="sitebody">
+		<div id="header">高雄市政府111年度環境水體監測資料--{{station}}</div>
+		<div id="sidebar_left">
+            <form action="." method="POST">
+                {% csrf_token %}
+                <input name="station" type="text" placeholder="站名" id="station">
+                <input  id="demo6" type="submit" name="button" id="button" value="送出" />
+                <input type="button" onclick="location.href='/matplotlib/';" value="重新整理" />
+            </form>
+            {% for value in name_lst %}
+                <h5>{{value}}</h5>
+            {% endfor %}
+		</div>
+		<!-- <div id="sidebar_right">sidebar_right</div> -->
+		<div id="content">
+			<img src="{% static 'images/plot.png' %}">
+            <img src="{% static 'images/detail.png' %}">
+			<div class="container"></div>
+		</div>
+		<div id="footer">
+            <a href="#" onclick="window.open(' https://colab.research.google.com/drive/19pq83yztIie_TUXI49Qd_8VEM_zJE3R2?authuser=1#scrollTo=lgWmltjzXlZC ', 'Colab', config='height=500,width=500');"><input type="button" value="前往Colab" /></a>
+        </div>
+	</div>
+</body>
+</html>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript">
+	document.getElementById("demo6").addEventListener("click",function(){
+        swal("Wait 5s圖片加載中...", "若無更新請重新整理或Ctrl+F5", "success");
+	});
+</script>

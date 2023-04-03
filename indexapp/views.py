@@ -300,11 +300,97 @@ def check_ok(request, productid=None):
 
 	return render(request, "check_ok.html", locals())
 
+
 def test(request):
-	access = models.authorized.objects.all()
-	count = len(access)
+	# access = models.authorized.objects.all()
+	# count = len(access)
 	
 	return render(request, "test.html", locals())
+
+import requests
+import csv
+import matplotlib
+matplotlib.use('Agg')
+from matplotlib import pyplot as plt
+from matplotlib.font_manager import FontProperties
+import time
+
+def matplotlib(request):
+	mon = 1
+	url_list = []
+	url_requests = []
+
+	url_list.append("https://data.kcg.gov.tw/dataset/057d3536-b514-4106-90d3-eb71c6377f5c/resource/7c5e4e18-2ffc-4e06-9d42-1b46053b0b7d/download/2022-01.csv")
+	url_list.append("https://data.kcg.gov.tw/dataset/057d3536-b514-4106-90d3-eb71c6377f5c/resource/0f3655d4-ed0f-4075-a973-5ce059096650/download/2022-02opendata.csv")
+	url_list.append("https://data.kcg.gov.tw/dataset/057d3536-b514-4106-90d3-eb71c6377f5c/resource/920ec090-da43-4881-84a0-23b759bc2fa8/download/920ec090-da43-4881-84a0-23b759bc2fa8.csv")
+	url_list.append("https://data.kcg.gov.tw/dataset/057d3536-b514-4106-90d3-eb71c6377f5c/resource/e5e51717-60a1-4305-aeed-f767a888c915/download/e5e51717-60a1-4305-aeed-f767a888c915.csv")
+	url_list.append("https://data.kcg.gov.tw/dataset/057d3536-b514-4106-90d3-eb71c6377f5c/resource/a4fff9e7-2886-44ba-8f3b-3abb3f8bfb56/download/a4fff9e7-2886-44ba-8f3b-3abb3f8bfb56-1.csv")
+	url_list.append("https://data.kcg.gov.tw/dataset/057d3536-b514-4106-90d3-eb71c6377f5c/resource/fc20f125-b1d6-4533-9f30-1b5c657b908e/download/fc20f125-b1d6-4533-9f30-1b5c657b908e.csv")
+	url_list.append("https://data.kcg.gov.tw/dataset/057d3536-b514-4106-90d3-eb71c6377f5c/resource/9d35ebd4-a0da-4ee2-8d42-2a05a8b131cd/download/2022-07opendata.csv")
+	url_list.append("https://data.kcg.gov.tw/dataset/057d3536-b514-4106-90d3-eb71c6377f5c/resource/62edf301-c597-434b-8917-81725f761c42/download/2022-08opendata.csv")
+	url_list.append("https://data.kcg.gov.tw/dataset/057d3536-b514-4106-90d3-eb71c6377f5c/resource/37aff175-6b08-477d-8596-94c9dfc26c29/download/2022-09opendata.csv")
+	url_list.append("https://data.kcg.gov.tw/dataset/057d3536-b514-4106-90d3-eb71c6377f5c/resource/a06ba9d1-e4e4-4046-92bf-bbf96f042115/download/2022-10opendata.csv")
+	url_list.append("https://data.kcg.gov.tw/dataset/057d3536-b514-4106-90d3-eb71c6377f5c/resource/6182bba7-7e86-481e-86b9-93fc646c94f3/download/2022-11opendata.csv")
+	url_list.append("https://data.kcg.gov.tw/dataset/057d3536-b514-4106-90d3-eb71c6377f5c/resource/885cb80b-47c1-4b4f-8095-129809e8a7e4/download/2022-12opendata.csv")
+
+	for i in range(12):
+		url_requests.append(requests.get(url_list[i]))
+
+	All_data_list = {}
+
+	for i in range(12):
+		decoded_content_list = (url_requests[i].content.decode('utf-8'))
+		cr1 = csv.reader(decoded_content_list.splitlines(), delimiter=',')
+		All_data_list[i] = list(cr1)
+
+	name_dict = {}
+	for i in range(27):
+		name_dict[i] = All_data_list[0][i][0]
+
+	name_lst = list(name_dict.values())
+
+	if request.method == 'POST':
+		station = request.POST['station']
+
+		all_pH_list = [list() for i in range(27)]
+		tsp_dict = {}
+
+		for j in range(12):
+			for i in range(27):
+				if(All_data_list[j][i][0]==name_dict[i]):
+					if(All_data_list[j][i][6]!="pH"):
+						if(All_data_list[j][i][6]!=""):
+							all_pH_list[i].append(float(All_data_list[j][i][6]))
+						else:
+							all_pH_list[i].append(None)
+					else:
+						all_pH_list[i].append(All_data_list[j][i][6])
+
+		for k in range(27):
+			tsp_dict[name_dict[k]] = all_pH_list[k]
+
+
+		font = FontProperties(fname=r"NotoSansTC-Regular.otf", size=14)
+
+		months = list(range(1, 13))
+		
+		for i in range(27):
+			if(name_lst[i] == station):
+				mon = i
+				plt.subplots(figsize=(12,8))
+				plt.plot(months, tsp_dict[name_dict[mon]], '-o', label=name_lst[i])
+				plt.title(f'{name_lst[i]} pH(酸鹼度)趨勢圖', fontproperties = font)
+				plt.xlabel('月份', fontproperties = font)
+				plt.ylabel('pH(酸鹼度)', fontproperties = font)
+				plt.legend(prop=font, bbox_to_anchor=(1.0, 1.0))
+				plt.grid()
+				plt.savefig("static/images/plot.png")
+
+	time.sleep(5)
+	
+	return render(request, "matplotlib.html", locals())
+
+
 
 class SendMail:
 	def auth(e_mail, content):
