@@ -55,24 +55,24 @@ def adduser(request):
 			user=User.objects.create_user(name,e_mail,password)
 			user.is_staff=False	# 工作人員狀態
 			user.save()
-			# strSmtp = "smtp.gmail.com:587"
-			# # strAccount = "" # 帳號
-			# # strPD = "" # 密碼
-			# content = "<h2>註冊資料 請妥善保存 不補發</h2><p>使用者名稱 : </p>"+name+"<p>使用者密碼 : </p>"+password
-			# msg = MIMEText(content, "html")
-			# msg["Subject"] = "歡迎"+name+"加入會員~~會員資料通知"
-			# server = SMTP(strSmtp)
-			# server.ehlo()
-			# server.starttls()
-			# try:
-			# 	server.login(strAccount, strPD)
-			# 	server.sendmail(strAccount, e_mail, msg.as_string())
-			# 	usermailhint = "註冊已成功，郵件已發送！"
-			# except SMTPAuthenticationError:
-			# 	usermailhint = "無法登入！"
-			# except:
-			# 	usermailhint = "郵件發送產生錯誤！"
-			# server.quit()
+			strSmtp = "smtp.gmail.com:587"
+			strAccount = "90818126@gcloud.csu.edu.tw" # 帳號
+			strPD = "Ss220347619" # 密碼
+			content = "<h2>註冊資料 請妥善保存 不補發</h2><p>使用者名稱 : </p>"+name+"<p>使用者密碼 : </p>"+password
+			msg = MIMEText(content, "html")
+			msg["Subject"] = "歡迎"+name+"加入會員~~會員資料通知"
+			server = SMTP(strSmtp)
+			server.ehlo()
+			server.starttls()
+			try:
+				server.login(strAccount, strPD)
+				server.sendmail(strAccount, e_mail, msg.as_string())
+				usermailhint = "註冊已成功，郵件已發送！"
+			except SMTPAuthenticationError:
+				usermailhint = "無法登入！"
+			except:
+				usermailhint = "郵件發送產生錯誤！"
+			server.quit()
 			return redirect('/index/')
 	return render(request, "create.html", locals())
 
@@ -90,7 +90,7 @@ def index(request):
 		e_mail = request.POST['e-mail']
 		strSmtp = "smtp.gmail.com:587"
 		strAccount = "90818126@gcloud.csu.edu.tw"
-		strPD = ""
+		strPD = "Ss220347619"
 		content = f' <h2>My note賣noee最新訊息!!!</h2><p>感謝您瀏覽本網站，本網站收錄眾多筆記，日後最新消息將會傳送e-mail到您信箱，請記得查收!!!</p><br>' \
 					  f'<p>網站連結:{indexAddr}</p>'
 		msg = MIMEText(content, "html")
@@ -396,7 +396,7 @@ class SendMail:
 	def auth(e_mail, content):
 			strSmtp = "smtp.gmail.com:587"
 			strAccount = "90818126@gcloud.csu.edu.tw"
-			strPD = ""
+			strPD = "Ss220347619"
 			msg = MIMEText(content, "html")
 			msg["Subject"] = "被購入通知，請進行授權。"
 			# mailto = e_mail  #收件者
@@ -418,7 +418,7 @@ class SendMail:
 	def buyUser(e_mail, content):
 			strSmtp = "smtp.gmail.com:587"
 			strAccount = "90818126@gcloud.csu.edu.tw"
-			strPD = ""
+			strPD = "Ss220347619"
 			msg = MIMEText(content, "html")
 			msg["Subject"] = "被授權通知，請進行查閱。"
 			# mailto = e_mail  #收件者
